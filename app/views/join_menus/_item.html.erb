@@ -1,0 +1,20 @@
+<div class="flex flex-wrap content-start overflow-auto scroll-container">
+  <% @menu.menu_items.each do |item| %>
+    <div class="w-1/2 flex items-center justify-start mt-4" type="button" data-bs-toggle="modal" data-bs-target=<%= "#exampleModal#{item.id}" %>>
+      <div class="mr-5">
+        <% if item.photo.attached? %>
+          <%= cl_image_tag item.photo.key, height: 75, width: 75, crop: :fill, class: "d-block rounded-lg" %>
+        <% else %>
+          <img src=<%= "https://source.unsplash.com/random/75x75/?restaurant-#{item.name}" %> class="d-block rounded-lg" alt="restaurant image">
+        <% end %>
+      </div>
+
+      <div>
+        <p class="font-bold text-sm"><%= item.name %></p>
+        <p class="text-sm"><%= number_to_currency(item.price.to_f) %></p>
+      </div>
+    </div>
+
+    <%= render "join_menus/modal", item: item %>
+  <% end %>
+</div>

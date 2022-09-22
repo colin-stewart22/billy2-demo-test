@@ -10,3 +10,56 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "restaurants/index";
+
+body {
+  background: #F4F4F4
+}
+
+.page-container {
+  width: 86%;
+  margin: 0 auto;
+  // background-color: orange;
+}
+
+.customer-container {
+}
+
+.customer-container-landing {
+  width: 86%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.active1 {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.landing-background {
+  // background-image: url("https://res.cloudinary.com/dmlfirids/image/upload/v1663060224/restaurant/restaurant1.jpg");
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0, 0),
+    rgba(255, 255, 255, 100)
+  ),url("https://res.cloudinary.com/dmlfirids/image/upload/v1663060224/restaurant/restaurant1.jpg");;
+
+  background-size: cover;
+}
+
+.bg-f4 {
+  background: #F4F4F4;
+}
+
+.tick-icon {
+  color: #77C74B;
+}
+
+.tag {
+  background-color: #d1d5db;
+}
+
+.tag.highlight {
+  background-color: #fb923c;
+  color: white;
+}

@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="light" >
   <head>
-    <title>Billy2DemoTest</title>
+    <title>Billy2</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
   <body>
+    <%= render "shared/flashes" %>
     <%= yield %>
   </body>
 </html>

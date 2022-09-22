@@ -1,0 +1,26 @@
+<div class="page-container pt-8">
+  <div class="flex items-center justify-between mb-8">
+    <div class="w-48">
+      <%= link_to restaurant_path(@restaurant) do %>
+        <i class="fa-solid fa-chevron-left"></i>
+      <% end %>
+    </div>
+
+
+    <h2 class="text-xl font-bold">Create Table</h2>
+    <div class="flex justify-end w-48"></div>
+  </div>
+
+  <%= simple_form_for [@restaurant, @table] do |f| %>
+  <%= f.input :table_number %>
+  <%# Remember to interpolate restaurant id in qr_code URL later %>
+  <%= f.input :qr_code, input_html: { value: "http://www.billy-961.com/restaurants/#{@restaurant.id}/tables/#{@table_number}/table_orders/new" } %>
+  <div class="flex justify-start items-center pt-8">
+    <div class="flex justify-center items-center h-10 rounded-lg bg-black">
+      <%= f.submit "Create", class: "text-xl mx-8 text-white" %>
+    </div>
+  </div>
+  <% end %>
+  <%# 1. Clean up submit link to link back to restaurant info page %>
+  <%# 2. Create form in table_orders/new and make sure the form submit button redirects to the table_customers/new path %>
+</div>

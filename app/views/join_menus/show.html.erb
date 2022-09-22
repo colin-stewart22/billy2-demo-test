@@ -1,0 +1,9 @@
+<h1><%= @menu.name %></h1>
+
+<div>
+  <% @join_menus.each do |menu|%>
+    <li>
+      <%= menu.menu_item.name %>
+    </li>
+  <% end %>
+</div>

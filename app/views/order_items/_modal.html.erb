@@ -1,0 +1,40 @@
+<div class="modal fade" id=<%= "exampleModal#{item.id}" %> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered px-2">
+    <div class="modal-content flex flex-col justify-center items-center rounded-lg px-8 pt-8 pb-12">
+      <div class="w-full">
+        <button type="button" class="text-gray-400" data-bs-dismiss="modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="mt-3">
+        <% if item.photo.attached? %>
+          <%= cl_image_tag item.photo.key, height: 150, width: 150, crop: :fill, class: "d-block rounded-lg" %>
+        <% else %>
+          <img src=<%= "https://source.unsplash.com/random/150x150/?restaurant-#{item.name}" %> class="d-block rounded-lg" alt="restaurant image">
+        <% end %>
+      </div>
+
+      <div class="w-7/12 mt-3">
+        <h5 class="text-center text-xl font-bold" id="exampleModalLabel"><%= item.name %></h5>
+        <p class="text-center text-xl font-bold mt-2"><%= number_to_currency(item.price.to_f) %></p>
+      </div>
+      <div>
+        <p class="text-center mt-2"><%= item.description %></p>
+      </div>
+
+      <div>
+        <%= simple_form_for [@restaurant, @table, @table_order, @table_customer, @order_item] do |f| %>
+          <div>
+            <%= f.input :menu_item_id, input_html: { value: item.id }, as: :hidden %>
+          </div>
+          <div class="mt-3">
+            <%= f.input :note, as: :text, label: false, placeholder: "add note", input_html: { style: "width: 250px; height: 100px" } %>
+          </div>
+          <div class="modal-content flex flex-col justify-center items-center rounded-lg px-8 pt-8 pb-12 bg-black px-5 py-2 text-white rounded-lg mt-3" data-bs-dismiss="modal">
+            <%= f.submit "Add to your Order", class: "text-center" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

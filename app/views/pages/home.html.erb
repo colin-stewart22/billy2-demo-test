@@ -1,2 +1,57 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="customer-container">
+  <div class="w-full h-28 bg-gray-300 flex items-end p-4">
+    <div class="flex items-center gap-3">
+      <i class="fa-solid fa-chevron-left text-xl"></i>
+      <h1 class="text-3xl font-bold">Your Payment</h1>
+    </div>
+  </div>
+  <%# if table_order.payment_type == "split_evenly" %>
+  <div class="p-3">
+    <h2 class="text-xl font-bold mt-4">.table_captain chose to split evenly</h2>
+    <div class="flex justify-between items-center mt-10">
+      <h3>Your Table Subtotal</h3>
+      <p>$300</p>
+    </div>
+    <div class="flex justify-between items-center mt-1">
+      <h3>Number of Diners</h3>
+      <p>6</p>
+    </div>
+    <div class="flex justify-between items-center mt-1">
+      <h3 class="font-bold">Your Portion</h3>
+      <p class="font-bold">$50</p>
+    </div>
+    <h2 class="font-bold mt-12">Would you like to leave a tip?</h2>
+    <div class="flex justify-between items-center mt-2">
+      <div class="bg-gray-200 px-3 py-1 rounded-lg">5%</div>
+      <div class="bg-gray-200 px-3 py-1 rounded-lg">10%</div>
+      <div class="bg-gray-200 px-3 py-1 rounded-lg">15%</div>
+      <div class="bg-gray-200 px-3 py-1 rounded-lg">20%</div>
+      <div class="bg-gray-200 px-3 py-1 rounded-lg">25%</div>
+    </div>
+    <div class="mt-12">
+      <div class="flex justify-between items-center mt-1">
+        <h3>subtotal</h3>
+        <p>$50</p>
+      </div>
+      <div class="flex justify-between items-center mt-1">
+        <h3>service charge</h3>
+        <p>$5</p>
+      </div>
+      <div class="flex justify-between items-center mt-1">
+        <h3>tip</h3>
+        <p>$10</p>
+      </div>
+      <div class="flex justify-between items-center mt-1">
+        <h3>tax</h3>
+        <p>$12</p>
+      </div>
+      <div class="flex justify-between items-center mt-4">
+        <h3 class="text-xl font-bold">Total Due</h3>
+        <p class="text-xl font-bold">$77</p>
+      </div>
+    </div>
+    <div class="w-full flex justify-center mt-12">
+      <button class="bg-black text-white px-5 py-2 rounded-lg">Go to payment</button>
+    </div>
+  </div>
+</div>

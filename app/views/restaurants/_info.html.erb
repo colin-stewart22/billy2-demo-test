@@ -1,0 +1,110 @@
+<div class="flex justify-between">
+  <div class="my-auto w-4/12">
+    <% if restaurant.photo.attached? %>
+      <%= cl_image_tag restaurant.photo.key, width: 336, height: 336, crop: :fill, class: "d-block rounded-lg" %>
+    <% else %>
+      <img src="https://res.cloudinary.com/dmlfirids/image/upload/v1663060224/restaurant/restaurant1.jpg", style="width: 336px; height:336px" class="d-block rounded-lg" alt="restaurant image">
+    <% end %>
+  </div>
+
+  <div class="flex flex-col w-8/12">
+    <div class="w-full bg-white rounded-lg p-8">
+      <h2 class="text-xl font-bold">Info</h2>
+      <div class="flex mt-3">
+        <h4 class="font-bold">Name</h4>
+        <p class="ml-5"><%= restaurant.name %></p>
+      </div>
+      <div class="flex mt-3">
+        <h4 class="font-bold">Phone</h4>
+        <p class="ml-5"><%= restaurant.phone_number %></p>
+      </div>
+      <div class="flex mt-3">
+        <h4 class="font-bold">Address</h4>
+        <p class="ml-5"><%= restaurant.address %></p>
+      </div>
+    </div>
+
+    <div class="flex mt-8">
+      <div class="w-52 bg-stone-300 rounded-l-lg">
+        <h2 class="text-xl font-bold z-10 m-8">Theme</h2>
+      </div>
+      <div class="w-52 bg-stone-500"></div>
+      <div class="w-52 bg-stone-700"></div>
+      <div class="w-52 bg-stone-900 rounded-r-lg"></div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-8 flex justify-between w-full bg-white rounded-lg">
+
+  <div class="w-full m-8">
+    <%= link_to restaurant_tables_path(restaurant) do %>
+      <h2 class="text-xl font-bold">Tables</h2>
+    <% end %>
+
+    <div class=" mt-3 flex flex-col flex-wrap h-24 w-full justify-between content-start overflow-auto">
+      <% restaurant.tables.each do |table| %>
+
+        <% table_order = table.table_orders.select(&:is_active).first %>
+        <% if table_order.nil? %>
+          <div class="flex justify-center items-center w-10 h-10 rounded-full border mr-3">
+            <h4 class="font-bold"><%= table.table_number %></h4>
+          </div>
+        <% else %>
+          <%= link_to restaurant_table_table_order_path(restaurant, table, table_order) do %>
+            <div class="flex justify-center items-center w-10 h-10 rounded-full border-t border-b border-l border-r border-black mr-3 hover:bg-black hover:text-white">
+              <h4 class="font-bold"><%= table.table_number %></h4>
+            </div>
+          <% end %>
+        <% end %>
+
+      <% end %>
+    </div>
+  </div>
+
+  <div class="flex justify-center items-center bg-white rounded-tr-lg rounded-br-lg p-8 border-l border-black z-10">
+    <%= link_to new_restaurant_table_path(restaurant) do %>
+      <div class="flex justify-center items-center w-10 h-10 rounded-full bg-black">
+        <i class="fa-solid fa-plus text-white"></i>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="mt-8 flex justify-between w-full bg-white rounded-lg">
+
+  <div class="m-8">
+    <h2 class="text-xl font-bold">Servers</h2>
+    <div class="mt-3 flex h-10 w-full justify-start items-center overflow-auto">
+      <% restaurant.users.each do |user| %>
+
+        <% if user.table_orders.select(&:is_active).empty? %>
+          <div class="flex justify-center items-center h-8 rounded-lg border border-black p-3 mr-3">
+            <h4 class="font-bold"><%= user.first_name %></h4>
+          </div>
+        <% else %>
+          <%= link_to server_path(restaurant, user.id) do %>
+            <div class="flex justify-center items-center h-8 rounded-lg border-t border-b border-l border-r border-black p-3 mr-3 hover:bg-black hover:text-white">
+              <h4 class="font-bold"><%= user.first_name %></h4>
+            </div>
+          <% end %>
+        <% end %>
+
+      <% end %>
+    </div>
+  </div>
+
+  <div class="flex justify-center items-center bg-white rounded-tr-lg rounded-br-lg p-8 border-l border-black z-10">
+    <div class="flex justify-center items-center w-10 h-10 rounded-full bg-black">
+      <i class="fa-solid fa-plus text-white"></i>
+    </div>
+  </div>
+</div>
+
+<%# Kitchen link %>
+<div class="mt-8 flex justify-between w-full bg-white rounded-lg">
+  <div class="m-8">
+    <h2 class="text-xl font-bold"><%= link_to "Kitchen", kitchen_path(restaurant) %></h2>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+
+<div class="page-container py-8">
+  <div class="flex items-center justify-between mb-4">
+    <div class="w-24">
+      <%= link_to restaurant_path(@restaurant) do %>
+        <i class="fa-solid fa-chevron-left"></i>
+      <% end %>
+    </div>
+
+    <h2 class="text-xl font-bold">QR Codes</h2>
+
+    <div class="w-24"></div>
+  </div>
+
+
+
+  <div class="flex flex-wrap justify-between">
+    <% @qr_codes.each do |table_number, qr_code| %>
+      <div class="flex flex-col justify-center items-center gap-3 p-8 bg-white rounded-lg">
+        <p class="text-3xl font-bold"> Table number <%= table_number %> </p>
+        <p><%= qr_code.html_safe %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+<%# <% @qr_codes.each do |code| %>
+<%# <%= code.html_safe%>
+<%# <% end %>

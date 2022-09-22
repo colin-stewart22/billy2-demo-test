@@ -1,0 +1,28 @@
+<div class="modal fade" id=<%= "exampleModal#{item.id}" %> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content flex flex-col justify-center items-center rounded-lg px-8 pt-8 pb-12">
+      <div class="w-full">
+        <button type="button" class="text-gray-400" data-bs-dismiss="modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="mt-3">
+        <% if item.photo.attached? %>
+          <%= cl_image_tag item.photo.key, height: 150, width: 150, crop: :fill, class: "d-block rounded-lg" %>
+        <% else %>
+          <img src=<%= "https://source.unsplash.com/random/150x150/?restaurant-#{item.name}" %> class="d-block rounded-lg" alt="restaurant image">
+        <% end %>
+      </div>
+
+      <div class="w-7/12 mt-3">
+        <h5 class="text-center text-xl font-bold" id="exampleModalLabel"><%= item.name %></h5>
+        <p class="text-center mt-2"><%= item.description %></p>
+        <p class="text-center text-xl font-bold mt-2"><%= number_to_currency(item.price.to_f) %></p>
+      </div>
+      <button type="button" class="bg-black px-5 py-2 text-white rounded-lg mt-3" data-bs-dismiss="modal">Save</button>
+      <%= link_to join_menu_path(item.join_menus.where(menu_id: @menu.id).first.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+        <p class="mt-3">Remove Item</p>
+      <% end %>
+    </div>
+  </div>
+</div>

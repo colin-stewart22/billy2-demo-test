@@ -1,0 +1,80 @@
+<% active_menu = Menu.find_by(is_active: true) %>
+<% categories = ["Breakfast", "Lunch", "Dinner", "Starters", "Mains", "Desserts", "Drinks"] %>
+
+<div class="customer-container">
+  <div class="w-full h-44 bg-gray-300 flex flex-col justify-between p-3">
+    <div class="flex -space-x-2 self-end overflow-auto">
+      <% @table_order.table_customers.each do |customer| %>
+        <% unless customer == @table_customer %>
+          <div class="flex justify-center items-center inline-block h-8 w-8 rounded-full border-2 border-white bg-gray-300">
+            <h1 class="text-lg font-bold"><%= customer.name[0] %></h1>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="flex justify-center items-center inline-block h-8 w-8 rounded-full border-2 border-white bg-orange-400">
+        <h1 class="text-lg font-bold"><%= @table_customer.name[0] %></h1>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-2xl font-bold"><%= @restaurant.name %></h2>
+      <h2 class="text-lg font-bold"><%= active_menu.name %> Menu</h2>
+    </div>
+
+    <div class="flex items-center gap-2 mt-3 text-sm overflow-auto">
+      <%= link_to new_restaurant_table_table_order_table_customer_order_item_path(@restaurant, @table, @table_order, @table_customer) do %>
+        <div class="flex justify-center items-center px-2 py-1 <%= "active1" unless params[:category].present? %>">
+          <h5>All</h5>
+        </div>
+      <% end %>
+      <% categories.each do |category| %>
+        <% menu = @menu.menu_items.select { |item| item.category == category } %>
+        <% unless menu.empty? %>
+          <%= link_to new_restaurant_table_table_order_table_customer_order_item_path(@restaurant, @table, @table_order, @table_customer, category: category) do %>
+            <div class="flex justify-center items-center px-2 py-1 <%= "active1" if params[:category] == category %>">
+              <h5><%= category %></h5>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <% if params[:category].present? %>
+    <div class="px-3 pb-3">
+      <% menu = @menu_items %>
+      <div class="mt-3">
+        <h3 class="text-lg font-bold"><%= params[:category] %></h3>
+        <%= render "order_items/item", menu: menu %>
+      </div>
+    </div>
+  <% else %>
+    <div class="px-3 pb-3">
+      <% categories.each do |category| %>
+        <% menu = @menu.menu_items.select { |item| item.category == category } %>
+        <div class="mt-3">
+          <% unless menu.empty? %>
+            <h3 class="text-lg font-bold"><%= category %></h3>
+            <%= render "order_items/item", menu: menu %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="h-16"></div>
+
+  <% basket_items = @table_customer.order_items.where(is_ordered: false) %>
+  <% unless basket_items.count.zero? %>
+    <div class="w-full flex justify-center">
+      <%= link_to "See your order", restaurant_table_table_order_table_customer_path(@restaurant, @table, @table_order, @table_customer), class: "bg-black text-white px-12 py-2 rounded-lg fixed bottom-5" %>
+    </div>
+  <% end %>
+  <% if (!@table_customer.order_items.count.zero?) && (basket_items.count.zero?) %>
+    <div class="w-full flex justify-center">
+      <%= link_to "Back to Table order", restaurant_table_table_order_table_customer_order_items_path(@restaurant, @table, @table_order, @table_customer), class: "bg-black text-white px-12 py-2 rounded-lg fixed bottom-5" %>
+    </div>
+  <% else %>
+    <div></div>
+  <% end %>
+</div>

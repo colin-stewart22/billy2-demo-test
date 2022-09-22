@@ -1,0 +1,7 @@
+<div class="w-full h-20 bg-blue-300">
+  <% if user_signed_in? %>
+    <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete} %>
+  <% else %>
+    <%= link_to "Login", new_user_session_path %>
+  <% end %>
+</div>

@@ -1,0 +1,28 @@
+<div class="page-container pt-8">
+  <div class="mb-8">
+    <%= link_to restaurant_menu_path(@restaurant, @menu) do %>
+      <i class="fa-solid fa-chevron-left"></i>
+    <% end %>
+  </div>
+
+  <div class="flex justify-between gap-5">
+
+    <%= render "join_menus/form", restaurant: @restaurant, menu: @menu, join_menu: @join_menu %>
+
+    <div class="w-1/2 bg-white rounded-lg">
+      <div class="m-8">
+        <h2 class="text-xl font-bold mb-3"><%= @menu.name %></h2>
+        <%= render "join_menus/item", menu: @menu %>
+      </div>
+
+      <div class="flex justify-center items-center bg-white rounded-bl-lg rounded-br-lg p-8 border-t border-black z-10">
+        <%= link_to restaurant_menu_path(@restaurant, @menu) do %>
+          <div class="flex justify-center items-center h-10 rounded-lg bg-black">
+            <h2 class="text-xl font-bold mx-8 text-white">Save Menu</h2>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>

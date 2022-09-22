@@ -1,0 +1,12 @@
+<div class="page-container pt-8">
+  <div class="flex items-center justify-between mb-8">
+    <div class="w-48">
+      <%= link_to restaurants_path do %>
+        <i class="fa-solid fa-chevron-left"></i>
+      <% end %>
+    </div>
+    <h2 class="text-xl font-bold">New Restaurant</h2>
+    <div class="w-48"></div>
+  </div>
+  <%= render "restaurants/form", restaurant: @restaurant %>
+</div>

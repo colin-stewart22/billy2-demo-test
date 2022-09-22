@@ -1,0 +1,20 @@
+<div class="page-container h-screen py-8">
+  <div class="h-full flex flex-col justify-between">
+
+    <div class="h-10 flex items-center justify-center mb-8">
+      <h2 class="text-xl font-bold">My Restaurants</h2>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-10 h-max">
+      <%= render "restaurants/list", restaurants: @restaurants %>
+    </div>
+
+    <div class="flex justify-center items-center bottom-0 my-8">
+      <%= link_to new_restaurant_path do %>
+        <div class="flex justify-center items-center w-10 h-10 rounded-full bg-black">
+          <i class="fa-solid fa-plus text-white"></i>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<div class="customer-container">
+  <div class="w-full h-28 bg-gray-300 flex items-end p-4">
+    <div class="flex">
+      <h1 class="text-3xl font-bold">Your Payment</h1>
+    </div>
+  </div>
+  <div class="p-3">
+    <% @table_captain = @table_order.table_customers.find{ |customer| customer.is_captain == true }.name %>
+    <% if @table_order.payment_option == "split_evenly" %>
+      <h2 class="text-xl font-bold mt-4"><%= @table_captain %> chose to split evenly</h2>
+      <div class="flex justify-between items-center mt-10">
+        <h3>Your Table Subtotal</h3>
+        <p>$<%= @table_order.total_price %></p>
+      </div>
+      <div class="flex justify-between items-center mt-1">
+        <h3>Number of Diners</h3>
+        <p><%= @table_order.table_customers.count %></p>
+      </div>
+      <div class="flex justify-between items-center mt-1">
+        <h3 class="font-bold">Your Portion</h3>
+        <p class="font-bold">$<%= @table_customer.amount_due %></p>
+      </div>
+    <% elsif @table_order.payment_option == "split_by_items" %>
+      <h2 class="text-xl font-bold mt-4"><%= @table_captain %> chose to split by items</h2>
+      <h3 class="text-xl mt-10">Your Items</h3>
+      <% @table_customer.order_items.each do |item| %>
+        <div class="flex justify-between items-center mt-2">
+          <h3><%= item.menu_item.name %></h3>
+          <p>$<%= item.menu_item.price %></p>
+        </div>
+      <% end %>
+    <% elsif @table_order.payment_option == "card_roulette" %>
+      <h2 class="text-xl font-bold mt-4">Congrats, <%= @payment_customer.name %>! You won credit card roulette. You must now pay the tab.</h2>
+    <% elsif @table_order.payment_option == "pay_all" %>
+      <% if @table_captain == @payment_customer %>
+        <h2 class="text-xl font-bold mt-4"><%= @payment_customer.name %>, you are paying the tab.</h2>
+      <% else %>
+        <h2 class="text-xl font-bold mt-4"><%= @payment_customer.name %>, you were selected by <%= @table_captain %> to pay the tab.</h2>
+      <% end %>
+    <% end %>
+
+    <h2 class="font-bold mt-12">Would you like to leave a tip?</h2>
+    <div class="flex justify-between items-center mt-2">
+      <div class="bg-gray-200 px-3 py-1 rounded-lg">5%</div>
+      <div class="bg-gray-200 px-3 py-1 rounded-lg">10%</div>
+      <div class="bg-gray-200 px-3 py-1 rounded-lg">15%</div>
+      <div class="bg-gray-200 px-3 py-1 rounded-lg">20%</div>
+      <div class="bg-gray-200 px-3 py-1 rounded-lg">25%</div>
+    </div>
+    <div class="mt-12">
+      <div class="flex justify-between items-center mt-1">
+        <h3>subtotal</h3>
+        <p><%= number_to_currency(@subtotal.to_f) %></p>
+      </div>
+      <div class="flex justify-between items-center mt-1">
+        <h3>service charge</h3>
+        <p><%= number_to_currency(@service_charge.to_f) %></p>
+      </div>
+      <div class="flex justify-between items-center mt-1">
+        <h3>tip</h3>
+        <p><%= number_to_currency(@tip.to_f) %></p>
+      </div>
+      <div class="flex justify-between items-center mt-1">
+        <h3>tax</h3>
+        <p><%= number_to_currency(@tax.to_f) %></p>
+      </div>
+      <div class="flex justify-between items-center mt-4">
+        <h3 class="text-xl font-bold">Total Due</h3>
+        <p class="text-xl font-bold"><%= number_to_currency(@table_price.to_f) %></p>
+      </div>
+    </div>
+    <div class="w-full flex justify-center mt-12">
+      <button class="bg-black text-white px-5 py-2 rounded-lg" id="pay">Go to payment</button>
+    </div>
+  </div>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    paymentButton = document.getElementById('pay');
+    paymentButton.addEventListener('click', () => {
+      const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+      stripe.redirectToCheckout({
+        sessionId: '<%= @table_customer.checkout_session_id %>'
+      });
+    });
+  </script>
+</div>

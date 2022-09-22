@@ -1,0 +1,17 @@
+<div>
+  <%= simple_form_for [restaurant, menu_item] do |f| %>
+    <div>
+      <%= f.input :name %>
+      <%= f.input :category, collection: ["Breakfast", "Lunch", "Dinner", "Starters", "Mains", "Desserts", "Drinks"] %>
+      <%= f.input :description, as: :text, input_html: { style: "width: 25%, height: 25%"} %>
+      <%= f.input :price, as: :float %>
+      <%= f.input :prepare_time, as: :integer %>
+      <%= f.input :photo, as: :file %>
+    </div>
+    <div class="flex justify-start items-center pt-8">
+      <div class="flex justify-center items-center h-10 rounded-lg bg-black">
+        <%= f.submit menu_item.id.nil? ? "Create" : "Save", class: "text-xl mx-8 text-white" %>
+      </div>
+    </div>
+  <% end %>
+</div>

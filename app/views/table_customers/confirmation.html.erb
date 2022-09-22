@@ -1,0 +1,16 @@
+<div class="h-screen flex flex-col justify-center items-center gap-5 p-5">
+  <p class="text-4xl text-center"><%= @restaurant.name %></P>
+  <i class="tick-icon fa-solid fa-circle-check text-7xl"></i>
+  <% if @table_customer.total_amount.zero? %>
+    <h1 class="text-4xl text-center font-bold">Good to go!</h1>
+  <% else %>
+    <h1 class="text-4xl text-center font-bold">Payment success!</h1>
+  <% end %>
+  <p class="text-xl text-center">Thank you for dining with us. We hope to see you again soon</p>
+  <p>Share Your Experience</p>
+  <div class="flex gap-5">
+    <i class="fa-brands fa-facebook text-2xl"></i>
+    <i class="fa-brands fa-twitter text-2xl"></i>
+    <i class="fa-brands fa-instagram text-2xl"></i>
+  </div>
+</div>

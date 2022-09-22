@@ -1,0 +1,52 @@
+<div class="page-container pt-8">
+  <div class="flex items-center justify-between mb-4">
+    <%= link_to restaurant_path(@restaurant) do %>
+      <i class="fa-solid fa-chevron-left"></i>
+    <% end %>
+
+    <div class="flex justify-end gap-3">
+      <% if @menu.is_active == false %>
+        <%= link_to activated_path(@restaurant, @menu), class:"bg-green-500 flex justify-center items-center text-sm text-white rounded-lg px-4 py-2" do %>
+          <h2>Activate Menu</h2>
+        <% end %>
+      <% end %>
+      <div>
+        <%= link_to restaurant_menu_path(@restaurant, @menu), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"bg-red-400 flex justify-center items-center text-sm text-white rounded-lg px-4 py-2" do %>
+          <h2>Delete Menu</h2>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full bg-white rounded-lg">
+    <div class="p-8">
+      <div class="flex gap-3 mb-3">
+        <h2 class="text-xl font-bold"><%= @menu.name %></h2>
+        <% if @menu.is_active %>
+          <div class="bg-green-500 flex justify-center items-center text-sm text-white rounded-lg px-3 py-1">
+            <p>Active</p>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="scroll-container overflow-auto">
+        <% categories = ["Starters", "Mains", "Breakfast", "Lunch", "Dinner", "Desserts", "Drinks"] %>
+        <% categories.each do |category| %>
+          <% menu = @menu.menu_items.select { |item| item.category == category } %>
+            <% unless menu.empty? %>
+              <h3 class="text-lg font-bold mb-3 mt-8"><%= category %></h3>
+              <%= render "menu_items/show", menu: menu %>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="flex justify-center items-center bg-white rounded-bl-lg rounded-br-lg p-8 border-t border-black z-10">
+      <%= link_to new_restaurant_menu_join_menu_path(@restaurant, @menu) do %>
+        <div class="flex justify-center items-center h-10 rounded-lg bg-black">
+          <h2 class="text-xl font-bold mx-8 text-white">Add Items</h2>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

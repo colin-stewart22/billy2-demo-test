@@ -1,0 +1,102 @@
+<div class="customer-container">
+  <div class="w-full h-40 bg-gray-300 flex flex-col p-3">
+    <div class="self-end">
+      <div class="flex -space-x-2 overflow-hidden">
+        <%# .each here %>
+        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80" alt="">
+        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+      </div>
+    </div>
+    <% active_menu = Menu.find_by(is_active: true) %>
+    <div>
+      <h1 class="text-3xl font-bold mt-3"><%= active_menu.name %></h1>
+    </div>
+    <div class="flex gap-2 mt-4 text-sm">
+      <%# .each here %>
+      <h5 class="px-2 py-1 active1">All</h5>
+      <h5 class="px-2 py-1">Starter</h5>
+      <h5 class="px-2 py-1">Main Course</h5>
+      <h5 class="px-2 py-1">Dessert</h5>
+    </div>
+  </div>
+  <div class="p-3">
+    <h2 class="mt-2 text-lg font-bold">Starter</h2>
+      <%# .each here %>
+    <% active_menu.menu_items.each do |menu_item| %>
+      <div class="w-full flex items-center mt-2">
+        <div class="mr-5">
+          <% if item.photo.attached? %>
+            <%= cl_image_tag item.photo.key, height: 150, width: 150, crop: :fill, class: "d-block rounded-lg" %>
+          <% else %>
+            <img src=<%= "https://source.unsplash.com/random/75x75/?restaurant-#{menu_item.name}" %> class="d-block rounded-lg" alt="restaurant image">
+          <% end %>
+        </div>
+        <div>
+          <p class="font-bold text-sm"><%= menu_item.name %></p>
+          <p class="text-sm">$<%= menu_item.price %></p>
+        </div>
+      </div>
+    <% end %>
+
+    <h2 class="mt-4 text-lg font-bold">Main Course</h2>
+      <%# .each here %>
+      <div class="w-full flex items-center mt-2">
+        <div class="mr-5">
+          <img src=<%= "https://source.unsplash.com/random/75x75/?restaurant-4" %> class="d-block rounded-lg" alt="restaurant image">
+        </div>
+        <div>
+          <p class="font-bold text-sm">This is a Food Item</p>
+          <p class="text-sm">$10</p>
+        </div>
+      </div>
+
+      <div class="w-full flex items-center mt-2">
+        <div class="mr-5">
+          <img src=<%= "https://source.unsplash.com/random/75x75/?restaurant-5" %> class="d-block rounded-lg" alt="restaurant image">
+        </div>
+        <div>
+          <p class="font-bold text-sm">This is a Food Item</p>
+          <p class="text-sm">$10</p>
+        </div>
+      </div>
+
+      <div class="w-full flex items-center mt-2">
+        <div class="mr-5">
+          <img src=<%= "https://source.unsplash.com/random/75x75/?restaurant-6" %> class="d-block rounded-lg" alt="restaurant image">
+        </div>
+        <div>
+          <p class="font-bold text-sm">This is a Food Item</p>
+          <p class="text-sm">$10</p>
+        </div>
+      </div>
+
+    <h2 class="mt-4 text-lg font-bold">Dessert</h2>
+      <%# .each here %>
+    <div class="w-full flex items-center mt-2">
+      <div class="mr-5">
+        <img src=<%= "https://source.unsplash.com/random/75x75/?restaurant-7" %> class="d-block rounded-lg" alt="restaurant image">
+      </div>
+      <div>
+        <p class="font-bold text-sm">This is a Food Item</p>
+        <p class="text-sm">$10</p>
+      </div>
+    </div>
+
+    <div class="w-full flex items-center mt-2">
+      <div class="mr-5">
+        <img src=<%= "https://source.unsplash.com/random/75x75/?restaurant-8" %> class="d-block rounded-lg" alt="restaurant image">
+      </div>
+      <div>
+        <p class="font-bold text-sm">This is a Food Item</p>
+        <p class="text-sm">$10</p>
+      </div>
+    </div>
+
+
+    <div class="w-full flex justify-center">
+      <button class="bg-black text-white px-12 py-2 rounded-lg fixed bottom-9">See your order</button>
+    </div>
+  </div>
+</div>

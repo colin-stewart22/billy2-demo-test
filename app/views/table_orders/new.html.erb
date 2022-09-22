@@ -1,0 +1,12 @@
+<div class="landing-background w-screen h-screen">
+  <div class="customer-container-landing h-full flex flex-col justify-between">
+    <div class="w-full h-10"></div>
+    <h2 class="flex w-full justify-center items-center text-3xl font-bold"><%= @restaurant.name %></h2>
+    <h2 class="flex w-full justify-center items-center text-xl font-bold">Table <%= @table.table_number %></h2>
+
+    <%= simple_form_for [@restaurant, @table, @table_order] do |f| %>
+      <%= f.input :is_active, as: :hidden, default: true %>
+      <%= f.submit "Create Order", class: "flex w-full justify-center items-center h-10 rounded-lg bg-black text-lg font-bold text-white" %>
+    <%  end %>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="page-container py-8">
+  <div class="h-10 flex items-center justify-between mb-8">
+    <%= link_to restaurant_path(@restaurant) do %>
+      <div class="flex items-center w-24">
+        <i class="fa-solid fa-chevron-left"></i>
+      </div>
+    <% end %>
+    <h2 class="text-xl font-bold">Kitchen Tickets</h2>
+    <div class="w-24"></div>
+  </div>
+  <div class="flex flex-wrap justify-around">
+    <% @food_tickets.each do |food_ticket| %>
+      <div class="w-80 p-8 m-3 bg-white rounded-lg">
+        <%= render "order_items/show", item: food_ticket %>
+      </div>
+    <% end %>
+  </div>
+</div>

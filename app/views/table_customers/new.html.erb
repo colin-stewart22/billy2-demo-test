@@ -1,0 +1,21 @@
+<div class="landing-background w-screen h-screen">
+  <div class="customer-container-landing h-full flex flex-col justify-between">
+    <div class="w-full h-48"></div>
+    <h2 class="flex w-full justify-center items-center text-2xl font-bold"><%= @restaurant.name %></h2>
+
+      <%= simple_form_for [@restaurant, @table, @table_order, @table_customer] do |f| %>
+        <%  if @table_order.table_customers.empty? %>
+          <%= f.input :is_captain, as: :hidden, default: true %>
+        <%  end %>
+        <%= f.input :is_paid, as: :hidden, default: false %>
+        <div class="flex flex-col justify-end w-full h-48">
+          <div class="w-full">
+            <%= f.input :name,
+                        label: false,
+                        placeholder: "Name" %>
+          </div>
+          <%= f.submit "Go", class: "flex w-full justify-center items-center h-10 rounded-lg bg-black text-lg font-bold text-white" %>
+        </div>
+      <% end %>
+  </div>
+</div>

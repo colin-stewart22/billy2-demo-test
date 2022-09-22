@@ -1,0 +1,12 @@
+<%= link_to restaurant_path(restaurant) do %>
+  <div class="flex items-center justify-center p-8 bg-white rounded-lg">
+    <div>
+      <% if restaurant.photo.attached? %>
+        <%= cl_image_tag restaurant.photo.key, width: 200, height: 200, crop: :fill, class: "d-block rounded-lg" %>
+      <% else %>
+        <img src="https://res.cloudinary.com/dmlfirids/image/upload/v1663060224/restaurant/restaurant1.jpg", style="height:200px; width: 200px" class="d-block rounded-lg" alt="restaurant image">
+      <% end %>
+      <h4 class="font-bold mt-3 text-center"><%= restaurant.name %></h4>
+    </div>
+  </div>
+<% end %>

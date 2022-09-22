@@ -1,0 +1,3 @@
+
+<% table_order = table_orders.where(table_id: table.id).select { |order| order.is_active }.first %>
+<h4 class="font-bold"><%= link_to table.table_number, restaurant_table_table_order_path(restaurant, table, table_order) %></h4>

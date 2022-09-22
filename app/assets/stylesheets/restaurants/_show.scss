@@ -1,0 +1,21 @@
+.btn.btn-outline-dark {
+  color: black;
+  border-radius: 4px;
+  &:hover {
+    color: white;
+    background: black;
+  }
+}
+
+.btn-outline-dark.active {
+  color: white;
+  background: black;
+  &:hover {
+    color: white;
+    background: black;
+  }
+}
+
+.scroll-container {
+  height: 670px;
+}
