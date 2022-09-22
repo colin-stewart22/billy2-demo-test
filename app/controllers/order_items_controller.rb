@@ -25,16 +25,16 @@ class OrderItemsController < ApplicationController
     # @menu_items = @menu.menu_items.select { |item| item.category == category }
 
     if params[:category].present?
-      if params[:category] == "Breakfast"
-        @menu_items = @menu.menu_items.where(category: "Breakfast")
-      elsif params[:category] == "Lunch"
-        @menu_items = @menu.menu_items.where(category: "Lunch")
-      elsif params[:category] == "Dinner"
-        @menu_items = @menu.menu_items.where(category: "Dinner")
-      elsif params[:category] == "Starters"
-        @menu_items = @menu.menu_items.where(category: "Starters")
-      elsif params[:category] == "Mains"
-        @menu_items = @menu.menu_items.where(category: "Mains")
+      if params[:category] == "Ramen"
+        @menu_items = @menu.menu_items.where(category: "Ramen")
+      elsif params[:category] == "Izakaya"
+        @menu_items = @menu.menu_items.where(category: "Izakaya")
+      elsif params[:category] == "Rice Dishes"
+        @menu_items = @menu.menu_items.where(category: "Rice Dishes")
+      elsif params[:category] == "Vegetarian"
+        @menu_items = @menu.menu_items.where(category: "Vegetarian")
+      elsif params[:category] == "Gluten Free"
+        @menu_items = @menu.menu_items.where(category: "Gluten Free")
       elsif params[:category] == "Desserts"
         @menu_items = @menu.menu_items.where(category: "Desserts")
       elsif params[:category] == "Drinks"

@@ -37,73 +37,73 @@ owner = User.create!(
   is_owner: true
 )
 
-puts "Create Restaurant database..."
+# puts "Create Restaurant database..."
 
-restaurant = Restaurant.create!(
-  name: Faker::Restaurant.name,
-  address: "204 Brick Lane Shoreditch, London, E1 6SA, England",
-  phone_number: Faker::PhoneNumber.cell_phone_in_e164,
-  theme_color: "blue",
-  user_id: owner.id
-)
+# restaurant = Restaurant.create!(
+#   name: Faker::Restaurant.name,
+#   address: "204 Brick Lane Shoreditch, London, E1 6SA, England",
+#   phone_number: Faker::PhoneNumber.cell_phone_in_e164,
+#   theme_color: "blue",
+#   user_id: owner.id
+# )
 
-puts "Create Mario database..."
+# puts "Create Mario database..."
 
-mario = User.create!(
-  email: "mario@lewagon.com",
-  password: "lewagon",
-  first_name: "Mario",
-  last_name: "lewagon",
-  is_owner: false
-)
+# mario = User.create!(
+#   email: "mario@lewagon.com",
+#   password: "lewagon",
+#   first_name: "Mario",
+#   last_name: "lewagon",
+#   is_owner: false
+# )
 
-RestaurantServer.create!(
-  restaurant_id: restaurant.id,
-  user_id: mario.id
-)
+# RestaurantServer.create!(
+#   restaurant_id: restaurant.id,
+#   user_id: mario.id
+# )
 
-puts "Create Luca database..."
+# puts "Create Luca database..."
 
-luca = User.create!(
-  email: "luca@lewagon.com",
-  password: "lewagon",
-  first_name: "Luca",
-  last_name: "lewagon",
-  is_owner: false
-)
+# luca = User.create!(
+#   email: "luca@lewagon.com",
+#   password: "lewagon",
+#   first_name: "Luca",
+#   last_name: "lewagon",
+#   is_owner: false
+# )
 
-RestaurantServer.create!(
-  restaurant_id: restaurant.id,
-  user_id: luca.id
-)
+# RestaurantServer.create!(
+#   restaurant_id: restaurant.id,
+#   user_id: luca.id
+# )
 
-puts "Create Sara database..."
+# puts "Create Sara database..."
 
-sara = User.create!(
-  email: "sara@lewagon.com",
-  password: "lewagon",
-  first_name: "Sara",
-  last_name: "lewagon",
-  is_owner: false
-)
+# sara = User.create!(
+#   email: "sara@lewagon.com",
+#   password: "lewagon",
+#   first_name: "Sara",
+#   last_name: "lewagon",
+#   is_owner: false
+# )
 
-RestaurantServer.create!(
-  restaurant_id: restaurant.id,
-  user_id: sara.id
-)
+# RestaurantServer.create!(
+#   restaurant_id: restaurant.id,
+#   user_id: sara.id
+# )
 
-puts "Create 3 Table database..."
+# puts "Create 3 Table database..."
 
-i = 1
+# i = 1
 
-3.times do
-  Table.create!(
-    restaurant_id: restaurant.id,
-    table_number: i,
-    qr_code: "http://www.billy-961.com/restaurants/#{restaurant.id}/tables/#{i}/table_orders/new"
-  )
+# 3.times do
+#   Table.create!(
+#     restaurant_id: restaurant.id,
+#     table_number: i,
+#     qr_code: "http://www.billy-961.com/restaurants/#{restaurant.id}/tables/#{i}/table_orders/new"
+#   )
 
-  i += 1
-end
+#   i += 1
+# end
 
 puts "Completed!"
