@@ -28,7 +28,7 @@
             <%= link_to restaurant_menu_path(restaurant, menu) do  %>
               <div>
                 <% if menu.photo.attached? %>
-                  <%= cl_image_tag menu.photo.key, height: 150, width: 400, crop: :fill %>
+                  <%= cl_image_tag menu.photo.key, height: 150, width: 400, crop: :fill, class: "d-block rounded-lg" %>
                 <% else %>
                   <img src=<%= "https://source.unsplash.com/random/400x150/?restaurant-#{menu.id}" %> class="d-block rounded-lg" alt="restaurant image">
                 <% end %>

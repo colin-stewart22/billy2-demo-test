@@ -2,7 +2,7 @@
   <%= simple_form_for [restaurant, menu_item] do |f| %>
     <div>
       <%= f.input :name %>
-      <%= f.input :category, collection: ["Breakfast", "Lunch", "Dinner", "Starters", "Mains", "Desserts", "Drinks"] %>
+      <%= f.input :category, collection: ["Ramen", "Izakaya", "Rice Dishes", "Vegetarian", "Gluten Free", "Desserts", "Drinks"] %>
       <%= f.input :description, as: :text, input_html: { style: "width: 25%, height: 25%"} %>
       <%= f.input :price, as: :float %>
       <%= f.input :prepare_time, as: :integer %>

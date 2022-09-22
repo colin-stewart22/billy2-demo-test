@@ -30,7 +30,7 @@
       </div>
 
       <div class="scroll-container overflow-auto">
-        <% categories = ["Starters", "Mains", "Breakfast", "Lunch", "Dinner", "Desserts", "Drinks"] %>
+        <% categories = ["Ramen", "Izakaya", "Rice Dishes", "Vegetarian", "Gluten Free", "Desserts", "Drinks"] %>
         <% categories.each do |category| %>
           <% menu = @menu.menu_items.select { |item| item.category == category } %>
             <% unless menu.empty? %>
